@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>😀 Welcome to T.A.B 😀</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+    body {
+        margin: 25% 20%;
+        text-align: center;
+        font: 20px Arial;
+    }
+    </style>
+</head>
+<body>
+    😀 Welcome to T.A.B 😀
+    <br />
+    🏃 🚶 Relax Your <b>BOBY</b> Relief Your <b>STRESS</b> Refresh Your <b>MIND</b> 🚶 🏃
+    <hr />
+    <div id="date"></div>
+    <div id="time"></div>
+    <hr />
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/x7UtVfdIHCE?rel=0&autoplay=1&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <script>        
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+
+            document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = checkTime(mm) + '/' + checkTime(dd) + '/' + yyyy;
+            document.getElementById("date").innerText = today;
+
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+        startTime();
+    </script>
+</body>
+</html>
