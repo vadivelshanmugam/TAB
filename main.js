@@ -1,15 +1,9 @@
 const electron = require('electron');
-//const AutoLaunch = require('auto-launch');
-
 const { app, BrowserWindow } = electron;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-//let autoLaunch
-
-
-console.log("onload", app.isReady()) // false
 
 function createWindow () {
   // Create the browser window.
@@ -33,36 +27,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
     app.dock.hide()
-
-    /*console.log("Closed", app.isReady())
-    app.dock.hide()
-
-    if(app.isReady()){
-      setTimeout(() => {
-        console.log("Inside Closed !!!")
-        createWindow()
-      }, 5000);
-    }*/
   })
-
-  /*electron.powerMonitor.on('lock-screen', () => {
-    console.log('Lock Screen Create window')
-    //win.hide()
-    //app.exit(0)
-  })
-
-  electron.powerMonitor.on('unlock-screen', () => {
-    console.log('Unlock Screen Create window !!!')
-    //app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
-  })
-
-  electron.powerMonitor.on('on-battery', () => {
-    console.log('On Battery Create window !!!')
-  })
-
-  electron.powerMonitor.on('on-ac', () => {
-    console.log('On AC Create window !!!')
-  })*/
 
   win.on('minimize', function (event) {
     app.dock.hide()
@@ -77,72 +42,24 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
 
-  /*autoLaunch = new AutoLaunch({
-    name: 'Your app name goes here',
-  });
-  autoLaunch.isEnabled().then((isEnabled) => {
-    if (!isEnabled) autoLaunch.enable();
-  });*/
-
-  //console.log("Path", app.getPath('exe'))
-
   setTimeout(() => {
       createWindow()
   }, 5000);
-  //clearTimeout(myVar);
-  //createWindow()
-  console.log("Ready", app.isReady())
   electron.powerMonitor.on('lock-screen', () => {
-    console.log('Lock Screen Ready !!!', app.isReady())
     if(win) {
       win.close()
     }
   })
 
   electron.powerMonitor.on('unlock-screen', () => {
-    console.log('Unlock Screen Ready !!!', app.isReady())
-    //createWindow()
     if(app.isReady()) {
       setTimeout(() => {
-        console.log('Inside Unlock Screen !!!')
         createWindow()
       }, 5000);
     }
   })
 
-  electron.powerMonitor.on('on-battery', () => {
-    console.log('On Battery Ready !!!')
-  })
-
-  electron.powerMonitor.on('on-ac', () => {
-    console.log('On AC Ready !!!')
-  })
-
-  electron.powerMonitor.on('resume', () => {
-    console.log('On Resume Ready !!!')
-  })
-
-  electron.powerMonitor.on('suspend', () => {
-    console.log('On Suspend Ready !!!')
-  })
-
-  electron.powerMonitor.on('shutdown', () => {
-    console.log('On Shutdown Ready !!!')
-  })
-
-  //createWindow()
-  idleStateCheck()
 })
-
-function idleStateCheck() {
-  electron.powerMonitor.querySystemIdleState(5, (idleState) => {
-    //console.log('idle State !!!', idleState)
-  })
-
-  setTimeout(() => {
-    idleStateCheck()
-  }, 1000);
-}
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -151,13 +68,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-  console.log("Quit", app.isReady())
 })
-
-/*app.on('before-quit', () => {
-  win.removeAllListeners('close');
-  win.close();
-});*/
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
