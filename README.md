@@ -14,5 +14,3 @@
 
 **Usage:**
 1) It will help to remain You to Take A Break from restful work.
-
-![image](/Users/vadshanm/Desktop/tab.png)
