@@ -3,7 +3,8 @@ const { app, BrowserWindow } = electron;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win;
+let timeOut = 5000;
 
 function createWindow () {
   // Create the browser window.
@@ -17,8 +18,8 @@ function createWindow () {
   app.dock.show()
   app.dock.setBadge('T.A.B')
 
-  // Open the DevTools.
-  //win.webContents.openDevTools()
+  // To Open the DevTools.
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -33,7 +34,7 @@ function createWindow () {
     app.dock.hide()
     setTimeout(() => {
       createWindow()
-    }, 5000);     
+    }, timeOut);     
   })
 }
 
@@ -41,10 +42,9 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-
   setTimeout(() => {
       createWindow()
-  }, 5000);
+  }, timeOut);
   electron.powerMonitor.on('lock-screen', () => {
     if(win) {
       win.close()
@@ -55,7 +55,7 @@ app.on('ready', () => {
     if(app.isReady()) {
       setTimeout(() => {
         createWindow()
-      }, 5000);
+      }, timeOut);
     }
   })
 
