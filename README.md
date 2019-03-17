@@ -14,5 +14,3 @@
 
 **Usage:**
 1) It will help to remain You to Take A Break from restful work.
-
-![image](https://github.bedbath.com/storage/user/434/files/d0867086-4905-11e9-9c46-767caf1cd4e8)
